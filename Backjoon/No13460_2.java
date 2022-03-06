@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class No13460 {
+public class No13460_2 {
 	
 	// 현재 게임의 상태를 알려줌
 	static class Game {
@@ -31,6 +31,8 @@ public class No13460 {
 	// 게임에 대한 판
 	static char[][] mat;
 
+	static boolean [][][][] visit = new boolean[11][11][11][11];
+	
 	// 방향 그래프
 	static int dirx[] = {-1, 0, 1, 0};
 	static int diry[] = {0, -1, 0, 1};
@@ -68,6 +70,8 @@ public class No13460 {
 		Queue<Game> queue = new LinkedList<>();
 		
 		queue.add(new Game(rx, ry, bx, by, 0));
+		
+		visit[rx][ry][bx][by] = true;
 		
 		// 0: 게임 중  1: 빨간 공만 들어감 승리! 2: 파란 공이 들어감  패배
 		int gamestate = 0;
@@ -204,6 +208,10 @@ public class No13460 {
 				
 				nbx = nbx - dirx[di];
 				nby = nby - diry[di];
+				
+				if(visit[nrx][nry][nbx][nby]) continue;
+				
+				visit[nrx][nry][nbx][nby] = true;
 				
 				// queue에 넣어주기!
 				queue.add(new Game(nrx, nry, nbx, nby, cg.count + 1));
