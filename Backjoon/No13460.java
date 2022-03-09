@@ -9,13 +9,13 @@ import java.util.StringTokenizer;
 
 public class No13460 {
 	
-	// ÇöÀç °ÔÀÓÀÇ »óÅÂ¸¦ ¾Ë·ÁÁÜ
+	// í˜„ì¬ ê²Œì„ì˜ ìƒíƒœë¥¼ ì•Œë ¤ì¤Œ
 	static class Game {
-		// »¡°£ °ø À§Ä¡
+		// ë¹¨ê°„ ê³µ ìœ„ì¹˜
 		int redx, redy;
-		// ÆÄ¶õ °ø À§Ä¡
+		// íŒŒë€ ê³µ ìœ„ì¹˜
 		int bluex, bluey;
-		// ¸î ¹ø ¼öÇàÇß´ÂÁö
+		// ëª‡ ë²ˆ ìˆ˜í–‰í–ˆëŠ”ì§€
 		int count;
 		public Game(int redx, int redy, int bluex, int bluey, int count) {
 			this.redx = redx;
@@ -28,10 +28,10 @@ public class No13460 {
 	
 	static int N, M;
 	
-	// °ÔÀÓ¿¡ ´ëÇÑ ÆÇ
+	// ê²Œì„ì— ëŒ€í•œ íŒ
 	static char[][] mat;
 
-	// ¹æÇâ ±×·¡ÇÁ
+	// ë°©í–¥ ê·¸ë˜í”„
 	static int dirx[] = {-1, 0, 1, 0};
 	static int diry[] = {0, -1, 0, 1};
 	
@@ -46,7 +46,7 @@ public class No13460 {
 		
 		int rx=-1, ry=-1, bx=-1, by=-1;
 		
-		// »¡°£ °ø°ú ÆÄ¶õ °øÀº À§Ä¡¸¸ ±â·Ï
+		// ë¹¨ê°„ ê³µê³¼ íŒŒë€ ê³µì€ ìœ„ì¹˜ë§Œ ê¸°ë¡
 		for(int i=0; i<N; i++) {
 			String line = br.readLine();
 			for(int j=0; j<M; j++) {
@@ -64,12 +64,12 @@ public class No13460 {
 			}
 		}
 		
-		// BFS¸¦ À§ÇÑ queue
+		// BFSë¥¼ ìœ„í•œ queue
 		Queue<Game> queue = new LinkedList<>();
 		
 		queue.add(new Game(rx, ry, bx, by, 0));
 		
-		// 0: °ÔÀÓ Áß  1: »¡°£ °ø¸¸ µé¾î°¨ ½Â¸®! 2: ÆÄ¶õ °øÀÌ µé¾î°¨  ÆĞ¹è
+		// 0: ê²Œì„ ì¤‘  1: ë¹¨ê°„ ê³µë§Œ ë“¤ì–´ê° ìŠ¹ë¦¬! 2: íŒŒë€ ê³µì´ ë“¤ì–´ê°  íŒ¨ë°°
 		int gamestate = 0;
 		int count = -1;
 		
@@ -77,14 +77,14 @@ public class No13460 {
 			
 			Game cg = queue.poll();
 			
-			// 10¹ø Å½»öÀ» ½Ç½ÃÇß´Ù.
-			// ³Ñ±ä´Ù.
+			// 10ë²ˆ íƒìƒ‰ì„ ì‹¤ì‹œí–ˆë‹¤.
+			// ë„˜ê¸´ë‹¤.
 			if(cg.count==10) continue;
 			
-			// 4¹æ Å½»ö
+			// 4ë°© íƒìƒ‰
 			for(int di=0; di<4; di++) {
 				
-				// ÇöÀç °ÔÀÓ »óÈ²À» ±â·Ï
+				// í˜„ì¬ ê²Œì„ ìƒí™©ì„ ê¸°ë¡
 				char[][] cmat = new char[N][M];
 				for(int i=0; i<N; i++) {
 					for(int j=0; j<M; j++) {
@@ -96,19 +96,19 @@ public class No13460 {
 //					cmat[i] = mat[i].clone();
 //				}
 				
-				// ÇöÀç °øµé À§Ä¡ ±×·ÁÁÖ±â
+				// í˜„ì¬ ê³µë“¤ ìœ„ì¹˜ ê·¸ë ¤ì£¼ê¸°
 				cmat[cg.redx][cg.redy] = 'R';
 				cmat[cg.bluex][cg.bluey] = 'B';
 				
-				// ´ÙÀ½ »¡°£ °ø
+				// ë‹¤ìŒ ë¹¨ê°„ ê³µ
 				int nrx = cg.redx + dirx[di];
 				int nry = cg.redy + diry[di];
 				
-				// ´ÙÀ½ ÆÄ¶õ °ø
+				// ë‹¤ìŒ íŒŒë€ ê³µ
 				int nbx = cg.bluex + dirx[di];
 				int nby = cg.bluey + diry[di];
 				
-				// ºóÄ­ÀÏ ¶§±îÁö »¡°£ °ø ÀüÁø!
+				// ë¹ˆì¹¸ì¼ ë•Œê¹Œì§€ ë¹¨ê°„ ê³µ ì „ì§„!
 				while(cmat[nrx][nry] == '.') {
 					cmat[nrx - dirx[di]][nry - diry[di]] = '.';
 					cmat[nrx][nry] = 'R';
@@ -116,17 +116,17 @@ public class No13460 {
 					nry = nry + diry[di];
 				}
 				
-				// ´ÙÀ½¿¡ °¡¾ßÇÒ °÷ÀÌ OÀÎ°¡?
+				// ë‹¤ìŒì— ê°€ì•¼í•  ê³³ì´ Oì¸ê°€?
 				if(cmat[nrx][nry] == 'O') {
-					// ÆÄ¶õ °øÀÌ µé¾î¿Ã ¼ö ÀÖµµ·Ï ÀÚ¸® ¸¸µé¾îÁÖ±â
+					// íŒŒë€ ê³µì´ ë“¤ì–´ì˜¬ ìˆ˜ ìˆë„ë¡ ìë¦¬ ë§Œë“¤ì–´ì£¼ê¸°
 					cmat[nrx - dirx[di]][nry - diry[di]] = '.';
-					// ÀÏ´Ü °ÔÀÓ »óÅÂ 1·Î ¸¸µé±â
+					// ì¼ë‹¨ ê²Œì„ ìƒíƒœ 1ë¡œ ë§Œë“¤ê¸°
 					gamestate = 1;
-					// Ä«¿îÆ® °»½Å
+					// ì¹´ìš´íŠ¸ ê°±ì‹ 
 					count = cg.count + 1;
 				}
 				
-				// ºóÄ­ÀÏ ¶§±îÁö ÆÄ¶õ °ø ÀüÁø!
+				// ë¹ˆì¹¸ì¼ ë•Œê¹Œì§€ íŒŒë€ ê³µ ì „ì§„!
 				while(cmat[nbx][nby] == '.') {
 					cmat[nbx - dirx[di]][nby - diry[di]] = '.';
 					cmat[nbx][nby] = 'B';
@@ -134,16 +134,16 @@ public class No13460 {
 					nby = nby + diry[di];
 				}
 				
-				// ´ÙÀ½¿¡ °¡¾ßÇÒ °÷ÀÌ OÀÎ°¡?
+				// ë‹¤ìŒì— ê°€ì•¼í•  ê³³ì´ Oì¸ê°€?
 				if(cmat[nbx][nby] == 'O') {
-					// ÀÌ ÄÉÀÌ½º´Â ²ÎÀÌ´Ù.
+					// ì´ ì¼€ì´ìŠ¤ëŠ” ê½ì´ë‹¤.
 					gamestate = 2;
 					count = -1;
-					// queue¿¡ ÀÚ½ÄµéÀ» ³ÖÁö ¾Êµµ·Ï »ı·«!
+					// queueì— ìì‹ë“¤ì„ ë„£ì§€ ì•Šë„ë¡ ìƒëµ!
 					continue;
 				}
 				
-				// °ÔÀÓÀÌ »¡°£ °ø¸¸ µé¾î°£ »óÅÂÀÎ°¡?
+				// ê²Œì„ì´ ë¹¨ê°„ ê³µë§Œ ë“¤ì–´ê°„ ìƒíƒœì¸ê°€?
 				if(gamestate == 1) {
 //					System.out.println(di);
 //					for(char i[] : cmat) {
@@ -151,11 +151,11 @@ public class No13460 {
 //							System.out.print(c);
 //						}System.out.println();
 //					}System.out.println();
-					// Á¤´äÀ» Ã£¾Ò´Ù ³ª°¡ÀÚ!
+					// ì •ë‹µì„ ì°¾ì•˜ë‹¤ ë‚˜ê°€ì!
 					break;
 				}
 				
-				// ´Ù½Ã »¡°£ °ø ÀüÁø!
+				// ë‹¤ì‹œ ë¹¨ê°„ ê³µ ì „ì§„!
 				while(cmat[nrx][nry] == '.') {
 					cmat[nrx - dirx[di]][nry - diry[di]] = '.';
 					cmat[nrx][nry] = 'R';
@@ -163,14 +163,14 @@ public class No13460 {
 					nry = nry + diry[di];
 				}
 				
-				// °ñÀÎ°¡?
+				// ê³¨ì¸ê°€?
 				if(cmat[nrx][nry] == 'O') {
 					cmat[nrx - dirx[di]][nry - diry[di]] = '.';
 					gamestate = 1;
 					count = cg.count + 1;
 				}
 				
-				// ´Ù½Ã ÆÄ¶õ °ø ÀüÁø!
+				// ë‹¤ì‹œ íŒŒë€ ê³µ ì „ì§„!
 				while(cmat[nbx][nby] == '.') {
 					cmat[nbx - dirx[di]][nby - diry[di]] = '.';
 					cmat[nbx][nby] = 'B';
@@ -178,12 +178,12 @@ public class No13460 {
 					nby = nby + diry[di];
 				}
 				
-				// ²ÎÀÎ°¡?
+				// ê½ì¸ê°€?
 				if(cmat[nbx][nby] == 'O') {
-					// ÀÌ ÄÉÀÌ½º´Â ¸ÁÇß´Ù!
+					// ì´ ì¼€ì´ìŠ¤ëŠ” ë§í–ˆë‹¤!
 					gamestate = 2;
 					count = -1;
-					// ÀÚ½Ä ÀÔ·Â »ı·«
+					// ìì‹ ì…ë ¥ ìƒëµ
 					continue;
 				}
 				
@@ -194,18 +194,18 @@ public class No13460 {
 //							System.out.print(c);
 //						}System.out.println();
 //					}System.out.println();
-					// Á¤´äÀ» Ã£¾Ò´Ù ³ª°¡ÀÚ!
+					// ì •ë‹µì„ ì°¾ì•˜ë‹¤ ë‚˜ê°€ì!
 					break;
 				}
 				
-				// ÇÑ ´Ü°è Àü²¨
+				// í•œ ë‹¨ê³„ ì „êº¼
 				nrx = nrx - dirx[di];
 				nry = nry - diry[di];
 				
 				nbx = nbx - dirx[di];
 				nby = nby - diry[di];
 				
-				// queue¿¡ ³Ö¾îÁÖ±â!
+				// queueì— ë„£ì–´ì£¼ê¸°!
 				queue.add(new Game(nrx, nry, nbx, nby, cg.count + 1));
 				
 //				System.out.println(di);
@@ -216,11 +216,11 @@ public class No13460 {
 //				}System.out.println();
 			}
 			
-			// °ÔÀÓÀÌ ³¡³µ´Ù Á¤´äÀ» Ã£¾Ò´Ù!
+			// ê²Œì„ì´ ëë‚¬ë‹¤ ì •ë‹µì„ ì°¾ì•˜ë‹¤!
 			if(gamestate == 1) break;
 		}
 		
-		// Á¤´äÀ» Ãâ·Â, ¸¸¾à ¼º°øÀÌ¶ó¸é ±× Ä«¿îÆ® ¾Æ´Ò °æ¿ì -1;
+		// ì •ë‹µì„ ì¶œë ¥, ë§Œì•½ ì„±ê³µì´ë¼ë©´ ê·¸ ì¹´ìš´íŠ¸ ì•„ë‹ ê²½ìš° -1;
 		System.out.println(count);
 		br.close();
 	}

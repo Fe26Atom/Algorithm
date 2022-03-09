@@ -10,11 +10,11 @@ import java.util.StringTokenizer;
 
 public class No1713 {
 	
-	// Áö±İ Æ²¿¡ µé¾î°¡ ÀÖ´ÂÁö Ã¼Å©
+	// ì§€ê¸ˆ í‹€ì— ë“¤ì–´ê°€ ìˆëŠ”ì§€ ì²´í¬
 	static boolean used[] = new boolean[101];
-	// ÈÄº¸°¡ ºÒ¸° ¼ö
+	// í›„ë³´ê°€ ë¶ˆë¦° ìˆ˜
 	static int count[] = new int[101];
-	// °¡Àå ÃÖ±Ù 
+	// ê°€ì¥ ìµœê·¼ 
 	static int last[] = new int[101];
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -29,11 +29,11 @@ public class No1713 {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
 		
-		// i =0 < c - 1¹øÂ°
+		// i =0 < c - 1ë²ˆì§¸
 		for (int i = 0; i < C; i++) {
 			// num
 			int num = Integer.parseInt(st.nextToken());
-			// Æ²¿¡ ¾ø´Â ÇĞ»ıÀÌ ºÒ¸²
+			// í‹€ì— ì—†ëŠ” í•™ìƒì´ ë¶ˆë¦¼
 			if(!used[num]) {
 				arr.add(num);
 				last[num] = i;
@@ -42,13 +42,13 @@ public class No1713 {
 			used[num] = true;
 			Collections.sort(arr, new myComparator());
 			
-			// »çÀÌÁî¸¦ Ã¼Å©  
+			// ì‚¬ì´ì¦ˆë¥¼ ì²´í¬  
 			if (arr.size() > N) {
 				int rev = arr.get(0);
-				// ¸¸¾à ¾Õ¿¡ ÀÖ´Â °Ô ¹æ±İ µé¾î°£ °Å´Ù.
+				// ë§Œì•½ ì•ì— ìˆëŠ” ê²Œ ë°©ê¸ˆ ë“¤ì–´ê°„ ê±°ë‹¤.
 				if(rev == num){
 					
-					// ÀÌ µÚ¿¡ÀÖ´Â°Å Á¦°Å
+					// ì´ ë’¤ì—ìˆëŠ”ê±° ì œê±°
 					rev  =arr.get(1);
 					arr.remove(1);
 				}
