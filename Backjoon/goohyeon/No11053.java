@@ -8,8 +8,8 @@ import java.util.StringTokenizer;
 public class No11053 {
 	
 	// LIS
-	
-	// 1. dp·Î Ç®¾îº¸±â
+	 
+	// 1. dpï¿½ï¿½ Ç®ï¿½îº¸ï¿½ï¿½
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
